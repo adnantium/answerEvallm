@@ -155,13 +155,13 @@ answer = """Both plant and animal cells have many organelles in common.
 # the cell wall, while animal cells have a more flexible and varied shape. Both types of cells play crucial roles in their
 # respective organisms' survival and functioning."""
 
-answer_eval_chain = get_answer_eval_chain()
-inputs = {
-    'question': question,
-    'answer': answer,
-}
-response: Evaluation = answer_eval_chain.invoke(inputs)
-print(response)
+# answer_eval_chain = get_answer_eval_chain()
+# inputs = {
+#     'question': question,
+#     'answer': answer,
+# }
+# response: Evaluation = answer_eval_chain.invoke(inputs)
+# print(response)
 
 # all_evals = evaluate_answer_multi_models(question, answer)
 # print(all_evals)
