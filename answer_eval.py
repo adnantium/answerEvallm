@@ -18,7 +18,17 @@ Rate the quality of the answer with a score between 0 and 100 based on each of t
 
 {criteria_list_text}
 
-The "comments" should be concise sentence fragments of constructive criticisms and detailed, specific recommendations for enhancements or correction. Provide the correct answer if the answer is incorrect or incomplete. Justify the score given for each criteria.
+Use the following defintions to rate the answer for each criteria:
+* 100: Excellent. The answer fully meets the criteria's definition.
+* 90-99: Very Good. The answer is very good but not perfect.
+* 80-89: Good. The answer has some minor issues.
+* 70-79: Fair. The answer has some major issues.
+* 60-69: Poor. The answer has many issues.
+* 0-59: Very Poor. The answer is very poor and does not meet the criteria's definition.
+
+The "comments" should be concise sentence fragments of constructive criticisms and detailed, specific 
+recommendations for enhancements or correction. Provide the correct answer if the answer is incorrect 
+or incomplete. Justify the score given for each criteria.
         
 {format_instructions}
     
@@ -159,9 +169,13 @@ def evaluate_answer_multi_models(question: str, answer: str, model_names: List[s
 if __name__ == '__main__':
 
     question = 'What are the differences and similarities of plant and animal cells?'
-    answer = """Both plant and animal cells have many organelles in common.
-        They both include organelles such as ribosomes, mitochondrion, nuclei, and cell membranes.
-        Plant cells also contain a cell wall, which animal cells do not contain."""
+
+    # answer = """Both plant and animal cells have many organelles in common.
+    #     They both include organelles such as ribosomes, mitochondrion, nuclei, and cell membranes.
+    #     Plant cells also contain a cell wall, which animal cells do not contain."""
+
+    answer = """Plant and animal cells, both eukaryotic, share similarities like a nucleus, mitochondria, and endoplasmic
+    reticulum. However, they differ significantly: plant cells have a rigid cell wall, chloroplasts for photosynthesis."""
 
     # answer = """Plant and animal cells, both eukaryotic, share similarities like a nucleus, mitochondria, and endoplasmic
     # reticulum. However, they differ significantly: plant cells have a rigid cell wall, chloroplasts for photosynthesis,
