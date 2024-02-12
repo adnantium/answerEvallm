@@ -8,7 +8,7 @@ from langchain.prompts import ChatPromptTemplate
 from langchain_core.runnables.base import RunnableSequence
 from fastapi.responses import HTMLResponse, JSONResponse
 
-from answer_eval import Evaluation, get_answer_eval_chain
+from answer_eval import Evaluation, CriteriaScore, get_answer_eval_chain
 
 import langchain
 
@@ -31,21 +31,19 @@ templates = Jinja2Templates(directory="templates")
 
 
 @app.get("/qa", response_class=HTMLResponse)
-async def get_form(request: Request):
-    # Render the HTML form
+async def qa_form(request: Request):
     return templates.TemplateResponse("qa_form.html", {"request": request})
 
 
-@app.post("/qa/evaluate")
-async def evaluate(question: str = Form(...), answer: str = Form(...)):
-    answer_eval_chain = get_answer_eval_chain()
+@app.post("/qa", response_class=HTMLResponse)
+async def qa_form_evaluate(request: Request, question: str = Form(...), answer: str = Form(...)):
     inputs = {
         'question': question,
         'answer': answer,
     }
-    response: Evaluation = answer_eval_chain.invoke(inputs)
-    print(response)
-    return response
+    evaluation: Evaluation = get_answer_eval_chain().invoke(inputs)
+    response_data = {"request": request, **inputs, "evaluation": evaluation}
+    return templates.TemplateResponse("qa_form.html", response_data)
 
 
 if __name__ == "__main__":

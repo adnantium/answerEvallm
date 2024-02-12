@@ -10,45 +10,45 @@
 <body>
 
 <div class="container mt-5">
-    <h2>Evaluate Question Answer</h2>
-    <form id="evaluateForm">
+
+    <h3>Evaluate an Answer to a Question</h3>
+
+    <form id="evaluateForm" action="/qa" method="POST">
         <div class="form-group">
             <label for="question">Question</label>
-            <input type="text" class="form-control" id="question" name="question" placeholder="Enter question" required>
+            <input type="text" class="form-control" id="question" name="question" placeholder="Enter question" required 
+                {% if question %}value="{{question}}"{% endif %}>
         </div>
         <div class="form-group">
             <label for="answer">Answer</label>
-            <input type="text" class="form-control" id="answer" name="answer" placeholder="Enter answer" required>
+            <textarea type="text" class="form-control" id="answer" name="answer" rows="3" 
+                placeholder="Enter answer" required>{% if answer %}{{answer}}{% endif %}</textarea>
         </div>
         <button type="submit" class="btn btn-primary">Evaluate</button>
     </form>
-    <div id="response" class="mt-3">
-        <!-- Response will go here -->
-    </div>
+
+    {% if evaluation %}
+    <br/>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Criteria</th>
+            <th scope="col">Score</th>
+            <th scope="col">Comments</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for scoring in evaluation.scores %}
+            <tr>
+                <th>{{ scoring.name }}</th>
+                <td>{{ scoring.score }}</td>
+                <td>{{ scoring.comments }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
 </div>
-
-<script>
-    $(document).ready(function() {
-        $("#evaluateForm").submit(function(e) {
-            e.preventDefault();
-            $.ajax({
-                url: "/qa/evaluate",
-                type: "POST",
-                data: {
-                    question: $("#question").val(),
-                    answer: $("#answer").val(),
-                },
-                success: function(response) {
-                    $("#response").html(`<pre>${JSON.stringify(response, null, 2)}</pre>`);
-                },
-                error: function(xhr, status, error) {
-                    $("#response").html(`<div class="alert alert-danger" role="alert">An error occurred: ${error}</div>`);
-                }
-            });
-        });
-    });
-</script>
-
 </body>
 </html>
 
