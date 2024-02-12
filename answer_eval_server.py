@@ -27,6 +27,27 @@ add_routes(
     output_type=Evaluation,
 )
 
+templates = Jinja2Templates(directory="templates")
+
+
+@app.get("/qa", response_class=HTMLResponse)
+async def get_form(request: Request):
+    # Render the HTML form
+    return templates.TemplateResponse("qa_form.html", {"request": request})
+
+
+@app.post("/qa/evaluate")
+async def evaluate(question: str = Form(...), answer: str = Form(...)):
+    answer_eval_chain = get_answer_eval_chain()
+    inputs = {
+        'question': question,
+        'answer': answer,
+    }
+    response: Evaluation = answer_eval_chain.invoke(inputs)
+    print(response)
+    return response
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="localhost", port=8000)

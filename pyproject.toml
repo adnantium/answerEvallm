@@ -26,6 +26,7 @@ huggingface-hub = "^0.20.2"
 rich = "^13.7.0"
 yapf = "^0.40.2"
 pytest = "^8.0.0"
+python-multipart = "^0.0.7"
 
 
 [tool.poetry.group.dev.dependencies]
