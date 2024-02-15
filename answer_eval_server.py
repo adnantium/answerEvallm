@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 from typing import List
+from fastapi.staticfiles import StaticFiles
 from langserve import add_routes
 from fastapi import FastAPI, Form, Request
 from fastapi.templating import Jinja2Templates

@@ -42,7 +42,7 @@ The "evaluator_name" field value should be "{evaluator_name}"
 DEFAULT_EVAL_CRITERION = {
     "Completeness": "The extent to which the answer covers all aspects of the question",
     "Correctness": "The accuracy of the information provided in the answer",
-    "Grammar": "Proper use of grammar, punctuation and correct spellings",
+    "Grammar": "Proper use of grammar, punctuation, correct spellings and must be full sentences",
 }
 
 
