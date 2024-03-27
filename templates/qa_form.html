@@ -21,7 +21,7 @@
         </div>
         <div class="form-group">
             <label for="answer">Answer</label>
-            <textarea type="text" class="form-control" id="answer" name="answer" rows="3" 
+            <textarea type="text" class="form-control" id="answer" name="answer" rows="2" 
                 placeholder="Enter answer" required>{% if answer %}{{answer}}{% endif %}</textarea>
         </div>
         <button type="submit" class="btn btn-primary">Evaluate</button>
@@ -29,6 +29,7 @@
 
     {% if evaluation %}
     <br/>
+    <h4>Evaluation from {{ evaluation.evaluator_name }}</h4>
     <table class="table table-hover">
         <thead>
           <tr class="table-primary">
