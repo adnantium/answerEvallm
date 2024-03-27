@@ -38,7 +38,9 @@ async def qa_form(request: Request):
 
 
 @app.post("/qa", response_class=HTMLResponse)
-async def qa_form_evaluate(request: Request, question: str = Form(...), answer: str = Form(...)):
+async def qa_form_evaluate(request: Request,
+                           question: str = Form(...),
+                           answer: str = Form(...)):
     inputs = {
         'question': question,
         'answer': answer,
