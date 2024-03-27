@@ -1,13 +1,12 @@
 [tool.poetry]
 name = "answerEvallm"
 version = "0.1.0"
-description = ""
+description = "Evaluate the quality of an answer to a question"
 authors = ["Adnantium <adnantium@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-# docarray = "^0.39.1"
 fastapi = "^0.105.0"
 langchain = "^0.1.0"
 langserve = "^0.0.38"
@@ -19,9 +18,7 @@ uvicorn = "^0.24.0.post1"
 jupyter = "^1.0.0"
 langchain-openai = "^0.0.2"
 beautifulsoup4 = "^4.12.2"
-# faiss-cpu = "^1.7.4"
 langchain-community = "^0.0.11"
-# tavily-python = {path = "../tavily-python"}
 huggingface-hub = "^0.20.2"
 rich = "^13.7.0"
 yapf = "^0.40.2"
@@ -30,7 +27,6 @@ python-multipart = "^0.0.7"
 
 
 [tool.poetry.group.dev.dependencies]
-# pandas = "^2.1.4"
 ipython = "^8.18.1"
 
 [build-system]
