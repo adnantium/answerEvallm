@@ -88,18 +88,18 @@ def get_answer_eval_chain() -> Runnable:
     """
     model_name: str = 'gpt-4'
     template: str = ANSWER_EVAL_PROMPT_TEMPLATE
-    criterion = DEFAULT_EVAL_CRITERION
+    criterion: dict = DEFAULT_EVAL_CRITERION
     pydantic_parser = PydanticOutputParser(pydantic_object=Evaluation)
 
     chain = build_answer_eval_chain(model_name, template, criterion, pydantic_parser)
     return chain
 
 
-def get_eval_model(model_name: str) -> ChatOpenAI:
+def get_eval_model(model_name: str, temperature: int = 0) -> ChatOpenAI:
     """
     Gets an instance of ChatOpenAI class for the model with a temperature of 0.
     """
-    model = ChatOpenAI(model_name=model_name, temperature=0)
+    model = ChatOpenAI(model_name=model_name, temperature=temperature)
     return model
 
 
